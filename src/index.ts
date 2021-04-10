@@ -57,9 +57,13 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('http://localhost:3000');
   },
 );
+
+app.get('/getuser', (req, res) => {
+  res.send(req.user);
+});
 
 const PORT = process.env.PORT ?? 3001;
 app.listen(PORT, () => console.log(`The server is listening on PORT: ${PORT}`));
