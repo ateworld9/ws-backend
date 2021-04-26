@@ -1,19 +1,15 @@
 import express, { Application, Request, Response } from 'express';
+import session from 'express-session';
 import './misc/dotenv';
 import './misc/db';
 import cors from 'cors';
-import session from 'express-session';
 import passport from 'passport';
-
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const app: Application = express();
 
-// app.use('/', (req: Request, res: Response) => {
-//   res.status(200).send({ data: 'Hello from ateworld9' });
-// });
-
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET ?? 'secretcode',
@@ -46,6 +42,10 @@ passport.use(
     },
   ),
 );
+
+app.use('/', (req: Request, res: Response) => {
+  res.status(200).send({ data: 'Hello from ateworld9' });
+});
 
 app.get(
   '/auth/google',
