@@ -6,7 +6,7 @@
   "author": "Dmitriy Vahrameev <vahrameev.work@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon",
+    "start": "yarn && nodemon",
     "build": "tsc ",
     "lint": "eslint . --ext .ts,.tsx"
   },
@@ -18,8 +18,7 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.12.3",
     "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0",
-    "ts-node": "^9.1.1"
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
@@ -36,6 +35,7 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
   "husky": {
