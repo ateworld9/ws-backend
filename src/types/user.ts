@@ -9,6 +9,7 @@ export interface IMongoDBUser {
   _id: string;
   googleId?: string;
   name: string;
+  email: string;
   surname?: string;
   photo?: string;
   _v: number;

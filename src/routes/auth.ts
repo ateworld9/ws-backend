@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-import User from '../models/User';
+import { User } from '../models';
 import { IMongoDBUser } from '../types';
 
 import '../misc/dotenv';
@@ -40,6 +40,7 @@ passport.use(
           if (!doc) {
             const newUser = new User({
               googleId: profile.id,
+              email: profile.emails?.[0].value,
               name: profile.name.givenName,
               surname: profile.name?.familyName,
               photo: profile.photos?.[0]?.value,
@@ -59,7 +60,7 @@ passport.use(
 authRouter.get(
   '/google',
   // https://developers.google.com/identity/protocols/oauth2/scopes google sign-in
-  passport.authenticate('google', { scope: ['profile'] }),
+  passport.authenticate('google', { scope: ['profile', 'email'] }),
 );
 
 authRouter.get(
