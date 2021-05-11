@@ -68,6 +68,10 @@ authRouter.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
+    // @ts-ignore
+    // req.session.user = req.user;
+    console.log('seesia', req.session);
+
     res.redirect('http://localhost:3000');
   },
 );
